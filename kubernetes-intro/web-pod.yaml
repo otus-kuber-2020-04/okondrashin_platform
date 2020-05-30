@@ -6,6 +6,12 @@ spec:
   containers:
     - name: "web"
       image: "okondrashin/kubernetes-intro-web"
+      readinessProbe:
+        httpGet:
+          path: /index.html
+          port: 80
+      livenessProbe:
+        tcpSocket: { port: 8000 }
       volumeMounts:
         - name: app
           mountPath: /app
